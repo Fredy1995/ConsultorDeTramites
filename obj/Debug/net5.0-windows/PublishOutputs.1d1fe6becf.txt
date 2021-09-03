@@ -1,0 +1,13 @@
+C:\Users\f.garate\Desktop\ConsultorF\Consultor.exe
+C:\Users\f.garate\Desktop\ConsultorF\Consultor.dll
+C:\Users\f.garate\Desktop\ConsultorF\Consultor.deps.json
+C:\Users\f.garate\Desktop\ConsultorF\Consultor.runtimeconfig.json
+C:\Users\f.garate\Desktop\ConsultorF\Consultor.pdb
+C:\Users\f.garate\Desktop\ConsultorF\DocumentFormat.OpenXml.dll
+C:\Users\f.garate\Desktop\ConsultorF\SpreadsheetLight.dll
+C:\Users\f.garate\Desktop\ConsultorF\System.Data.SqlClient.dll
+C:\Users\f.garate\Desktop\ConsultorF\runtimes\win-arm64\native\sni.dll
+C:\Users\f.garate\Desktop\ConsultorF\runtimes\win-x64\native\sni.dll
+C:\Users\f.garate\Desktop\ConsultorF\runtimes\win-x86\native\sni.dll
+C:\Users\f.garate\Desktop\ConsultorF\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\f.garate\Desktop\ConsultorF\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
