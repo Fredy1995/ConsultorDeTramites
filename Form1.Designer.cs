@@ -66,6 +66,7 @@ namespace Consultor
             this.dtpFechaF = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnBuscarFechas = new System.Windows.Forms.Button();
+            this.lblProcesando = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgDatosFiltrados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
@@ -461,12 +462,27 @@ namespace Consultor
             this.btnBuscarFechas.UseVisualStyleBackColor = false;
             this.btnBuscarFechas.Click += new System.EventHandler(this.btnBuscarFechas_Click);
             // 
+            // lblProcesando
+            // 
+            this.lblProcesando.AutoSize = true;
+            this.lblProcesando.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblProcesando.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblProcesando.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblProcesando.ForeColor = System.Drawing.Color.DimGray;
+            this.lblProcesando.Location = new System.Drawing.Point(371, 47);
+            this.lblProcesando.Name = "lblProcesando";
+            this.lblProcesando.Size = new System.Drawing.Size(86, 17);
+            this.lblProcesando.TabIndex = 25;
+            this.lblProcesando.Text = "Procesando...";
+            this.lblProcesando.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(843, 853);
+            this.Controls.Add(this.lblProcesando);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pbGood);
@@ -544,6 +560,7 @@ namespace Consultor
         private System.Windows.Forms.DateTimePicker dtpFechaF;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnBuscarFechas;
+        private System.Windows.Forms.Label lblProcesando;
     }
 }
 

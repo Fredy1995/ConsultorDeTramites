@@ -131,6 +131,7 @@ namespace Consultor
                 progressBar1.Visible = true;
                 labelProgreso.Text = "0%";
                 progressBar1.Value = 0;
+                lblProcesando.Visible = true;
                 dt.Clear();
                 btnFiltrar.Enabled = false;
                 txtFiltrar.ReadOnly = true;
@@ -150,67 +151,6 @@ namespace Consultor
            
         }
 
-
-       
-
-        
-       
-      
-        public void AgregarALista(string noTramite)
-        {
-          
-            string tramite, fechaC,status, orden, tarea, delegacion;
-            DateTime fecha;
-            
-            try
-            {
-                con = new SqlConnection(strConexion);
-                using (con)
-                {
-                    string ConsultarTramite = "select DISTINCT ST.fk_nroTramite, CONVERT(DATE, SIS_Tramite.fechaInicial),  E.estatus, ST.ordenJerarquico, TT.nombre, (SELECT nombreDelegacion FROM CAT_Municipio cmun  INNER JOIN  CAT_DelegacionesMunicipales   on[idDelegacionM] = cmun.[fkIdDelegacionM] WHERE idMunicipio = SUBSTRING(ST.fk_nroTramite, 13, 15)) " +
-                        "from SIS_SeguimientoTramite ST inner join CAT_Estatus E on E.idEstatus = ST.fk_estatus inner join CAT_TareasPorTramite TT on ST.fk_tareasPorTramite = TT.idTareasPorProceso inner join SIS_Tramite on st.fk_nroTramite = tramite " +
-                        "where e.estatus <> 'NO INICIADO'  and fk_nroTramite in ("+noTramite+") order by fk_nroTramite, ordenJerarquico";
-
-                    OrdenSql = new SqlCommand(ConsultarTramite, con);
-                    con.Open();
-                
-                    Leer = OrdenSql.ExecuteReader();
-                    while (Leer.Read())
-                    {
-                        cont++;
-                        tramite = Leer[0].ToString();
-                        fecha = DateTime.Parse(Leer[1].ToString());
-                        fechaC = fecha.ToString("dd/MM/yyyy");
-                        status = Leer[2].ToString();
-                        orden = Leer[3].ToString();
-                        tarea = Leer[4].ToString();
-                        delegacion = Leer[5].ToString();
-                        ListViewItem fila = new ListViewItem(tramite);
-                        fila.SubItems.Add(fechaC);
-                        fila.SubItems.Add(status);
-                        fila.SubItems.Add(orden);
-                        fila.SubItems.Add(tarea);
-                        fila.SubItems.Add(delegacion);
-                        fila.SubItems.Add(cont.ToString());
-                        lsvConsultados.Items.Add(fila);
-                     
-                       
-                    }
-                    cont = 0;
-                    con.Close();
-                    btnFiltrar.Enabled = true;
-                    txtFiltrar.ReadOnly = true;
-                    pbImagen.Visible = false;
-                    btnImprimir.Enabled = false;
-                    dt.Clear();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
@@ -501,11 +441,13 @@ namespace Consultor
         {
              DateTime FechaI = dtpFechaI.Value;
              DateTime FechaF = dtpFechaF.Value;
+         
             string fi = FechaI.ToShortDateString(),ff=FechaF.ToShortDateString();
-
-              if(FechaI < FechaF)
+           
+              if (FechaI <= FechaF)
               {
-                dt.DefaultView.RowFilter = $"fecha  BETWEEN '{fi}' AND '{ff}'";
+                 dt.DefaultView.RowFilter = string.Format("fecha >= #{0}# and fecha <= #{1}# ", Convert.ToDateTime(fi).ToString("MM/dd/yyyy"), Convert.ToDateTime(ff).ToString("MM/dd/yyyy"));
+                
             }
         }
 
@@ -533,6 +475,7 @@ namespace Consultor
                 labelProgreso.Visible = false;
                 progressBar1.Visible = false;
                 pbGood.Visible = true;
+                lblProcesando.Visible = false;
                 
             }
            
