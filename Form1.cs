@@ -58,10 +58,10 @@ namespace Consultor
                 {
                     string rutaArchivo = openFileDialog1.FileName;
                     txtNameFile.Text = rutaArchivo;
-                    if (lsvConsultados.Items.Count > 0)
-                    {
+                    
                         dt.Clear();
                         lsvConsultados.Items.Clear();
+                     
                         btnFiltrar.Enabled = false;
                         pbImagen.Visible = false;
                         txtFiltrar.ReadOnly = true;
@@ -70,15 +70,12 @@ namespace Consultor
                         dtpFechaI.Enabled = false;
                         dtpFechaF.Enabled = false;
                         pbGood.Visible = false;
-                    }
-                    else
-                    {
-                       
-                        CargarDatos(rutaArchivo);
                         btnConsultar.Enabled = true;
-                        txtFiltrar.ReadOnly = true;
-                        pbImagen.Visible = false;
-                    }
+                        CargarDatos(rutaArchivo);
+                     
+                    
+                   
+                    
                    
                     
                     
@@ -227,19 +224,18 @@ namespace Consultor
             }
             if (band)
             {
-                if (lstTempS.ElementAt(pos) != "CANCELADO" || lstTempS.ElementAt(pos) != "PAUSADO" || lstTempS.ElementAt(pos) != "INICIADO" || lstTempS.ElementAt(pos) != "PROCESO" || lstTempS.ElementAt(pos) != "PENDIENTE")
+                //Un par diferente 
+                if (lstTempS.ElementAt(pos) == "CANCELADO" || lstTempS.ElementAt(pos) == "PAUSADO" || lstTempS.ElementAt(pos) == "INICIADO" || lstTempS.ElementAt(pos) == "PROCESO" || lstTempS.ElementAt(pos) == "PENDIENTE")
                 {
-                    
                    
-
-                    dt.Rows.Add(new object[] { lstTempT.ElementAt(pos + 1), lstTempF.ElementAt(pos + 1), lstTempS.ElementAt(pos + 1), lstTempTa.ElementAt(pos + 1), lstTempD.ElementAt(pos + 1) });
+                    dt.Rows.Add(new object[] { lstTempT.ElementAt(pos), lstTempF.ElementAt(pos), lstTempS.ElementAt(pos), lstTempTa.ElementAt(pos), lstTempD.ElementAt(pos) });
                     dgDatosFiltrados.DataSource = dt;
                             
                 }
                 else
                 {
                  
-                    dt.Rows.Add(new object[] { lstTempT.ElementAt(pos), lstTempF.ElementAt(pos), lstTempS.ElementAt(pos), lstTempTa.ElementAt(pos), lstTempD.ElementAt(pos) });
+                    dt.Rows.Add(new object[] { lstTempT.ElementAt(pos + 1), lstTempF.ElementAt(pos + 1), lstTempS.ElementAt(pos + 1), lstTempTa.ElementAt(pos + 1), lstTempD.ElementAt(pos + 1) });
                     dgDatosFiltrados.DataSource = dt;
                 }
               
@@ -248,7 +244,7 @@ namespace Consultor
             }
             else
             {
-               
+                //Todos son iguales y obtengo el mayor del orden
                 dt.Rows.Add(new object[] { lstTempT.ElementAt(lstTempD.Count - 1), lstTempF.ElementAt(lstTempD.Count - 1), lstTempS.ElementAt(lstTempD.Count - 1), lstTempTa.ElementAt(lstTempD.Count - 1), lstTempD.ElementAt(lstTempD.Count - 1) });
                 dgDatosFiltrados.DataSource = dt;
             }
