@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Consultor;
-using Microsoft.VisualBasic.ApplicationServices;
+﻿using Microsoft.VisualBasic.ApplicationServices;
 namespace Consultor
 {
     class Aplicacion : WindowsFormsApplicationBase
